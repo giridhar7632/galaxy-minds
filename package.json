@@ -1,21 +1,64 @@
 {
   "name": "galaxy-minds",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "A galaxy of brilliant minds where star-like students come together to form constellations for collaborative learning.",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "cross-env NODE_ENV=production node index.js",
+    "dev": "cross-env NODE_ENV=development nodemon index.js",
+    "prepare": "husky install",
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx --fix .",
+    "format": "prettier --write **/**/*.{js,jsx}",
+    "pre-commit": "lint-staged",
+    "test": "cross-env NODE_ENV=test jest --verbose --runInBand --detectOpenHandles"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/giridhar7632/galaxy-minds.git"
+  },
+  "keywords": [
+    "collaborative",
+    "students",
+    "platform",
+    "server"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/giridhar7632/galaxy-minds/issues"
+  },
+  "homepage": "https://github.com/giridhar7632/galaxy-minds#readme",
   "dependencies": {
-    "autoprefixer": "10.4.15",
-    "eslint": "8.48.0",
-    "eslint-config-next": "13.4.19",
-    "next": "13.4.19",
-    "postcss": "8.4.29",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "tailwindcss": "3.3.3"
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.3",
+    "nodemailer": "^6.9.1",
+    "socket.io": "^4.6.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
+    "concurrently": "^7.4.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "husky": "^8.0.1",
+    "jest": "^29.5.0",
+    "lint-staged": "^13.0.3",
+    "nodemon": "^2.0.19",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.2.3",
+    "supertest": "^6.3.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,css,md}": "npx prettier --write"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testTimeout": 10000
+  },
+  "engines": {
+    "node": ">=16.14"
   }
 }
