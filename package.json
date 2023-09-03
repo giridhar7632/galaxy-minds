@@ -39,7 +39,6 @@
     "socket.io": "^4.6.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9",
     "concurrently": "^7.4.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0 || ^8.2.0",
