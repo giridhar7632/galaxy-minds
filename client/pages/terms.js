@@ -26,17 +26,15 @@ const terms = () => {
           3.1. You agree to use the Service for lawful purposes and in compliance with all
           applicable laws and regulations.
         </p>
-        <p>
-          3.2. You may not:
-          <ul>
-            <li>Impersonate any person or entity.</li>
-            <li>
-              Transmit any content that is offensive, harmful, or violates the rights of others.
-            </li>
-            <li>Use the Service for spamming, phishing, or any fraudulent activity.</li>
-            <li>Attempt to gain unauthorized access to the Service or its systems.</li>
-          </ul>
-        </p>
+        <p>3.2. You may not:</p>
+        <ul>
+          <li>Impersonate any person or entity.</li>
+          <li>
+            Transmit any content that is offensive, harmful, or violates the rights of others.
+          </li>
+          <li>Use the Service for spamming, phishing, or any fraudulent activity.</li>
+          <li>Attempt to gain unauthorized access to the Service or its systems.</li>
+        </ul>
 
         <h2>4. Study Groups</h2>
         <p>4.1. Users can create and join study groups.</p>

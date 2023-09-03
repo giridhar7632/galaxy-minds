@@ -22,26 +22,22 @@ const privacyPolicy = () => {
         </p>
 
         <h2>3. How We Use Your Information</h2>
-        <p>
-          We use the collected information for the following purposes:
-          <ul>
-            <li>To provide and maintain our services.</li>
-            <li>To improve and personalize your user experience.</li>
-            <li>To communicate with you, including sending updates and notifications.</li>
-            <li>To analyze usage patterns and gather insights for service enhancement.</li>
-            <li>To enforce our terms of service and policies.</li>
-          </ul>
-        </p>
+        <p>We use the collected information for the following purposes:</p>
+        <ul>
+          <li>To provide and maintain our services.</li>
+          <li>To improve and personalize your user experience.</li>
+          <li>To communicate with you, including sending updates and notifications.</li>
+          <li>To analyze usage patterns and gather insights for service enhancement.</li>
+          <li>To enforce our terms of service and policies.</li>
+        </ul>
 
         <h2>4. Data Sharing</h2>
-        <p>
-          We may share your information in the following circumstances:
-          <ul>
-            <li>With study group members to facilitate collaboration.</li>
-            <li>With service providers and partners who assist us in delivering our services.</li>
-            <li>In response to legal requests or to protect our rights and interests.</li>
-          </ul>
-        </p>
+        <p>We may share your information in the following circumstances:</p>
+        <ul>
+          <li>With study group members to facilitate collaboration.</li>
+          <li>With service providers and partners who assist us in delivering our services.</li>
+          <li>In response to legal requests or to protect our rights and interests.</li>
+        </ul>
 
         <h2>5. Data Security</h2>
         <p>
@@ -50,14 +46,12 @@ const privacyPolicy = () => {
         </p>
 
         <h2>6. Your Choices</h2>
-        <p>
-          You have the right to:
-          <ul>
-            <li>Access, update, or delete your personal information.</li>
-            <li>Opt-out of promotional communications.</li>
-            <li>Manage cookie preferences through your browser settings.</li>
-          </ul>
-        </p>
+        <p>You have the right to:</p>
+        <ul>
+          <li>Access, update, or delete your personal information.</li>
+          <li>Opt-out of promotional communications.</li>
+          <li>Manage cookie preferences through your browser settings.</li>
+        </ul>
 
         <h2>7. Children's Privacy</h2>
         <p>

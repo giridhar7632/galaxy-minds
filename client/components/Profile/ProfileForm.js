@@ -132,7 +132,7 @@ export function ProfileForm({ onFormSubmit, defaultValues, type = 'Create', ...p
       </form>
 
       {/* Social media links */}
-      <FormSection title={'Social media'}>
+      <FormSection title={'Social media (optional)'}>
         <p className="text-xs text-gray-600">Enter your social media urls</p>
         <Input
           name="facebook"
@@ -155,7 +155,7 @@ export function ProfileForm({ onFormSubmit, defaultValues, type = 'Create', ...p
       </FormSection>
 
       {/* Links media links */}
-      <FormSection title={'Profile Image'}>
+      <FormSection title={'Profile Image (optional)'}>
         <ImageUpload
           defaultValue={defaultValues?.profileImage}
           name={'profileImage'}

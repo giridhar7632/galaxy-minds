@@ -3,7 +3,7 @@ import Layout from '@/components/layout'
 const about = () => {
   return (
     <Layout meta={{ name: 'About' }}>
-      <section className="prose my-10 mx-auto xl:prose-lg">
+      <section className="prose xl:prose-lg mx-auto my-10">
         <h1>About Galaxy Minds</h1>
 
         <p>
@@ -35,8 +35,8 @@ const about = () => {
         <h2>Contact Us</h2>
         <p>
           If you have any questions, feedback, or ideas to share, please don't hesitate to reach out
-          to us at <a href="mailto:talla_11915139@nitkkr.ac.in">contact@galaxy-minds.com</a>. We value your input and are here to support your educational
-          endeavors.
+          to us at <a href="mailto:talla_11915139@nitkkr.ac.in">contact@galaxy-minds.com</a>. We
+          value your input and are here to support your educational endeavors.
         </p>
       </section>
     </Layout>

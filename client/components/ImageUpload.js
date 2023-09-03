@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Button from '../common/Button'
+import Button from './common/Button'
 import Image from 'next/image'
 import clsx from 'clsx'
 

@@ -26,7 +26,8 @@ const Navbar = () => {
       <div className="container-fluid flex w-full flex-wrap items-center justify-between px-3 md:px-6">
         <div className="container-fluid">
           <Link href="/">
-            <Image src="/logo.png" height={44} width={112.63} alt="Galaxy Minds" loading="lazy" />{' '}
+            {/* <Image src="/logo.png" height={44} width={112.63} alt="Galaxy Minds" loading="lazy" />{' '} */}
+            <p className="font-black">Galaxy Minds</p>
           </Link>
         </div>
         {isAuth && (

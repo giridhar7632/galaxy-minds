@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "10.4.15",
     "clsx": "^2.0.0",
     "eslint": "8.48.0",
