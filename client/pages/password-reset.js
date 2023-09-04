@@ -45,7 +45,7 @@ const PasswordReset = () => {
             name={'email'}
             type="email"
             required
-            placeholder="your@email.com"
+            placeholder="Email"
             aria-label="user-email"
             autoComplete="current-email"
             register={register('email', {

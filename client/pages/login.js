@@ -45,7 +45,7 @@ const Login = () => {
             name={'userId'}
             type="text"
             required
-            placeholder="your username or your@email.com"
+            placeholder="Username or Email"
             aria-label="user-email"
             autoComplete="current-email"
             register={register('userId', {
@@ -62,7 +62,8 @@ const Login = () => {
             label={'Password'}
             type="password"
             name="password"
-            placeholder={`Your Super secret ✨`}
+            divClass={'mb-0'}
+            placeholder={`Password`}
             aria-label="user-password"
             register={register('password', {
               required: `Password is required!`,
@@ -70,13 +71,13 @@ const Login = () => {
             error={errors?.password}
           />
           <Link
-            className="block w-full text-right text-xs"
+            className="mb-3 block w-full text-right text-xs"
             href={`/password-reset${email ? `?email=${email}` : ''}`}
           >
             Forgot Password?
           </Link>
           <Button
-            className={'mt-2'}
+            className={'mt-2 w-full'}
             loading={isLoading}
             loadingText={'Logging in...'}
             onClick={onFormSubmit}

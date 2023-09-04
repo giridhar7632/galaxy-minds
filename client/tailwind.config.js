@@ -9,6 +9,9 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    borderRadius: {
+      xl: '14px',
+    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -19,6 +22,9 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
+      },
+      height: {
+        lg: '52px',
       },
     },
   },

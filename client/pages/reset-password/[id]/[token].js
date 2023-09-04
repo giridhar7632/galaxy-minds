@@ -34,7 +34,7 @@ const ResetPassword = () => {
             label={'Password'}
             type="password"
             name="password"
-            placeholder={`Your Super secret ✨`}
+            placeholder={`Password`}
             aria-label="user-password"
             register={register('newPassword', {
               required: `Password is required!`,

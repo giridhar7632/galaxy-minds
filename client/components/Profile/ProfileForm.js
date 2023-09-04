@@ -45,7 +45,7 @@ export function ProfileForm({ onFormSubmit, defaultValues, type = 'Create', ...p
             label="Nick Name"
             name="name"
             type="text"
-            placeholder="Space mozarat"
+            placeholder="Nick Name"
             aria-label="username"
             autoComplete="current-name"
             autoFocus
@@ -62,7 +62,7 @@ export function ProfileForm({ onFormSubmit, defaultValues, type = 'Create', ...p
             name="username"
             type="text"
             disabled={type === 'Update'}
-            placeholder="Spacemozarat123"
+            placeholder="Username"
             aria-label="username"
             autoComplete="current-username"
             autoFocus
@@ -80,7 +80,7 @@ export function ProfileForm({ onFormSubmit, defaultValues, type = 'Create', ...p
             type="email"
             required
             disabled={type === 'Update'}
-            placeholder="your@email.com"
+            placeholder="Email"
             aria-label="user-email"
             autoComplete="current-email"
             register={register('email', {
@@ -93,7 +93,7 @@ export function ProfileForm({ onFormSubmit, defaultValues, type = 'Create', ...p
             })}
             error={errors?.email}
           />
-          <Input
+          {/* <Input
             label={'Phone number'}
             name={'phone'}
             type="email"
@@ -105,13 +105,13 @@ export function ProfileForm({ onFormSubmit, defaultValues, type = 'Create', ...p
               required: `Phone number is required!`,
             })}
             error={errors?.phoneNumber}
-          />
+          /> */}
           {!(type === 'Update') && (
             <Input
               label={'Password'}
               type="password"
               name="password"
-              placeholder={`Super secret ✨ - minimum 8 characters`}
+              placeholder={`Password`}
               aria-label="user-password"
               register={register('password', {
                 required: `Password is required!`,
