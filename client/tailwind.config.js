@@ -9,9 +9,6 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    borderRadius: {
-      xl: '14px',
-    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -25,6 +22,12 @@ module.exports = {
       },
       height: {
         lg: '52px',
+      },
+      width: {
+        lg: '470px',
+      },
+      borderRadius: {
+        xl: '14px',
       },
     },
   },

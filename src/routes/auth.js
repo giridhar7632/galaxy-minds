@@ -22,7 +22,7 @@ const {
 // register a user
 router.post('/register', async (req, res) => {
   try {
-    const { username, name, email, password, phoneNumber, address, profileImage } = req.body
+    const { username, email, password } = req.body
 
     const user = await User.findOne({ email: email })
     if (user)
@@ -39,15 +39,7 @@ router.post('/register', async (req, res) => {
       })
 
     const passwordHash = await hash(password, 12)
-    const newUser = new User({
-      username,
-      name,
-      email,
-      password: passwordHash,
-      phoneNumber,
-      address,
-      profileImage,
-    })
+    const newUser = new User({ username, email, password: passwordHash })
 
     const saved = await newUser.save()
     const token = createEmailVerificationToken(saved)
@@ -75,6 +67,38 @@ router.post('/register', async (req, res) => {
       type: 'error',
       message: 'Error creating user!',
       error,
+    })
+  }
+})
+
+router.post('/profile/userId', async (req, res) => {
+  try {
+    const { firstName, lastName, socials } = req.body
+    const { userId } = req.params
+    const user = await User.findOne({
+      $or: [{ username: userId }, { email: userId }],
+    }).select(['+refreshToken', '+password'])
+    if (!user)
+      return res.status(404).json({
+        message: "User doesn't exist! 😢",
+        type: 'error',
+      })
+
+    Object.assign(user, { firstName, lastName, socials })
+    // Save updated user object to the database
+    await user.save()
+
+    // Return success message and updated user object
+    res.status(200).json({
+      message: 'Profile created successfully! 🎉',
+      user,
+    })
+  } catch (error) {
+    // If there's an error, return 500 error
+    console.log(error)
+    res.status(500).json({
+      message: 'Internal server error! 😢',
+      type: 'error',
     })
   }
 })

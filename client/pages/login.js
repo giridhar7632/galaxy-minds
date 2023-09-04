@@ -9,7 +9,7 @@ import { useAuth } from '@/hooks/useAuth'
 import Layout from '@/components/layout'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
+  const [userId, setEmail] = useState('')
   const {
     register,
     handleSubmit,
@@ -27,7 +27,7 @@ const Login = () => {
 
   useEffect(() => {
     const subscription = watch(
-      (value, { name, _type }) => name === 'email' && setEmail(value.email)
+      (value, { name, _type }) => name === 'userId' && setEmail(value.userId)
     )
     return () => subscription.unsubscribe()
   }, [watch])
@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <Layout meta={{ name: 'Login' }}>
       <div className="flex h-full w-full flex-col items-center justify-center">
-        <form className="w-96 max-w-xl rounded-xl border bg-white p-12 text-base shadow-sm">
+        <form className="w-lg max-w-xl rounded-xl border bg-white p-12 text-base shadow-sm">
           <h1 className="mb-6 w-max text-clip text-2xl font-bold">Login</h1>
           <Input
             label={'Username or Email'}
@@ -46,8 +46,8 @@ const Login = () => {
             type="text"
             required
             placeholder="Username or Email"
-            aria-label="user-email"
-            autoComplete="current-email"
+            aria-label="user-id"
+            autoComplete="current-id"
             register={register('userId', {
               required: `You should provide either username or email!`,
               // pattern: {
@@ -72,7 +72,7 @@ const Login = () => {
           />
           <Link
             className="mb-3 block w-full text-right text-xs"
-            href={`/password-reset${email ? `?email=${email}` : ''}`}
+            href={`/password-reset${userId ? `?email=${userId}` : ''}`}
           >
             Forgot Password?
           </Link>

@@ -134,12 +134,7 @@ export function ProfileForm({ onFormSubmit, defaultValues, type = 'Create', ...p
       {/* Social media links */}
       <FormSection title={'Social media (optional)'}>
         <p className="text-xs text-gray-600">Enter your social media urls</p>
-        <Input
-          name="facebook"
-          type="link"
-          placeholder="Facebook"
-          register={register('socials.facebook')}
-        />
+
         <Input
           name="instagram"
           type="link"
