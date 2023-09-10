@@ -190,7 +190,6 @@ router.post('/refresh_token', async (req, res) => {
       })
 
     if (user.refreshToken !== refreshToken) {
-      console.log(user.refreshToken === refreshToken)
       return res.status(403).json({
         message: 'Invalid refresh token! 🤔',
         type: 'error',
@@ -201,7 +200,6 @@ router.post('/refresh_token', async (req, res) => {
 
     user.refreshToken = newRefreshToken
     await user.save()
-    console.log({ user })
     sendRefreshToken(res, newRefreshToken)
     return res.json({
       message: 'Refreshed successfully! 🤗',

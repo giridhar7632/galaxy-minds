@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { ProfileForm } from '@/components/Profile/ProfileForm'
-import Loader from '@/components/common/Loader'
-import { ArrowLeft, Email, Facebook, Instagram, Pencil, Twitter } from '@/components/icons'
+import PageLoader from '@/components/common/PageLoader'
+import { ArrowLeft, Email, Instagram, Twitter } from '@/components/icons'
 import Layout from '@/components/layout'
 import { useAuth } from '@/hooks/useAuth'
 import useFetcher from '@/hooks/useFetcher'
@@ -24,8 +24,8 @@ const IconBtn = ({ children, color, ...props }) => (
 )
 
 const Profile = () => {
-  const [profile, setProfile] = useState(data)
-  const [isLoading, setIsLoading] = useState(false)
+  const [profile, setProfile] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
   const [status, setStatus] = useState('')
 
   const [isEdit, setIsEdit] = useState(false)
@@ -34,10 +34,10 @@ const Profile = () => {
   const toast = useToast()
   const router = useRouter()
   const fetcher = useFetcher()
-  const fetchProfile = async (id) => {
+  const fetchProfile = async (username) => {
     if (isAuth) {
       try {
-        const res = await fetcher(`/api/users/${id}`, { token: isAuth })
+        const res = await fetcher(`/api/users/${username}`, { token: isAuth })
         setProfile(res)
       } catch (error) {
         console.log(error)
@@ -62,20 +62,19 @@ const Profile = () => {
     }
   }
 
-  // useEffect(() => {
-  //   if (router.isReady) {
-  //     // wait until router.query is defined
-  //     if (router.query.username === 'me') {
-  //       setIsLoading(false)
-  //       setProfile(user)
-  //     } else {
-  //       // fetchProfile(router.query.username)
-  //       fetchProfile(router.query.username)
-  //       console.log(router.query)
-  //     }
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [router.query.username])
+  useEffect(() => {
+    if (router.isReady) {
+      // wait until router.query is defined
+      if (router.query.username === 'me') {
+        setProfile(user)
+        setIsLoading(false)
+      } else {
+        // fetchProfile(router.query.username)
+        fetchProfile(router.query.username)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.username])
 
   // const tabs = {
   //   'Edit Profile': (
@@ -83,10 +82,12 @@ const Profile = () => {
   //   ),
   // }
 
+  console.log({ profile, user, isAuth })
+
   return (
     <Layout meta={{ name: profile?.name || 'Profile' }}>
-      {isLoading ? (
-        <Loader />
+      {isLoading || !router.isReady ? (
+        <PageLoader />
       ) : status ? (
         <div className={'w-full text-center text-2xl font-bold text-gray-300'}>{status}</div>
       ) : (
@@ -97,7 +98,7 @@ const Profile = () => {
                 src={profile?.profileImage || `https://api.multiavatar.com/${profile?.name}.png`}
                 width={100}
                 height={100}
-                className={'mb-2 rounded-full'}
+                className={'mb-2 h-36 w-36 rounded-full object-cover object-center'}
                 alt={profile?.firstName || ''}
                 loading={'lazy'}
                 placeholder={'blur'}
@@ -109,7 +110,7 @@ const Profile = () => {
 
           {!isEdit && (
             <div className="mx-auto my-4 flex max-w-xs items-center justify-around gap-3">
-              <IconBtn href={profile?.email}>
+              <IconBtn href={`mailto:${profile?.email}`}>
                 <Email width={24} />
               </IconBtn>
               {profile?.socials && (
@@ -182,28 +183,3 @@ const Profile = () => {
 }
 
 export default Profile
-
-// export async function getStaticProps({ params }) {
-//   try {
-//     // getting user profile
-//     const res = await fetch(`http://localhost:5000/api/users/${params.id}`)
-//     return {
-//       // sending user data as props
-//       props: { profile: res },
-//       revalidate: 10,
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     return {
-//       props: { message: 'User not found! 😕', type: 'error' },
-//     }
-//   }
-// }
-
-// export async function getStaticPaths() {
-//   const users = ['644b9943abb40e22051e672a', '644bb98031828d3660be9c60', '644c3113448c4be41580d7f5']
-//   return {
-//     paths: users,
-//     fallback: true,
-//   }
-// }

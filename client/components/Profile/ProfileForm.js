@@ -50,7 +50,7 @@ export function ProfileForm({
           defaultValue={defaultValues?.profileImage}
           name={'profileImage'}
           setValue={setValue}
-          alt={username}
+          alt={defaultValues?.username || username}
         />
         <div className="flex gap-3">
           <Input

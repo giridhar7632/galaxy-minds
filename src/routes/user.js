@@ -68,7 +68,7 @@ router.put('/me', isAuth, async (req, res) => {
 // Get user profile details
 router.get('/:username', isAuth, async (req, res) => {
   try {
-    const user = await User.find({ username: req.params.username })
+    const user = await User.findOne({ username: req.params.username })
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
