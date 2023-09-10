@@ -31,7 +31,7 @@ const VerifyEmail = () => {
             : 'Your email has been verified! You can now have the full access to the application'}
         </h3>
         <Link href={'/'} replace>
-          <Button>Go to Home</Button>
+          <Button>Go to home</Button>
         </Link>
       </div>
     </Layout>

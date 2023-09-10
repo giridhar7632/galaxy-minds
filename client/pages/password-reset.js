@@ -61,10 +61,10 @@ const PasswordReset = () => {
           <Button
             className={'mt-4 w-full'}
             loading={isLoading}
-            loadingText={'Sending Password Reset Email...'}
+            loadingText={'Sending password reset email...'}
             onClick={onFormSubmit}
           >
-            Send Password Reset Email
+            Send password reset email
           </Button>
         </form>
         <div className="mt-6">

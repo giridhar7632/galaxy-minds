@@ -59,6 +59,7 @@ router.post('/register', async (req, res) => {
       return res.json({
         message: 'Verify your email by clicking the link sent to your email! 📧',
         type: 'success',
+        username,
       })
     })
   } catch (error) {
@@ -71,9 +72,9 @@ router.post('/register', async (req, res) => {
   }
 })
 
-router.post('/profile/userId', async (req, res) => {
+router.post('/profile/new/:userId', async (req, res) => {
   try {
-    const { firstName, lastName, socials } = req.body
+    const { firstName, lastName, socials, profileImage } = req.body
     const { userId } = req.params
     const user = await User.findOne({
       $or: [{ username: userId }, { email: userId }],
@@ -84,7 +85,7 @@ router.post('/profile/userId', async (req, res) => {
         type: 'error',
       })
 
-    Object.assign(user, { firstName, lastName, socials })
+    Object.assign(user, { firstName, lastName, socials, profileImage })
     // Save updated user object to the database
     await user.save()
 

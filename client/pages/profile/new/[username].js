@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -6,33 +5,45 @@ import Button from '@/components/common/Button'
 import Input from '@/components/common/Input'
 import { useAuth } from '@/hooks/useAuth'
 import Layout from '@/components/layout'
+import ImageUpload from '@/components/ImageUpload'
+import { useRouter } from 'next/router'
 
-const Profile = () => {
+const Profile = ({ defaultValues }) => {
   const {
     register,
     handleSubmit,
-    watch,
+    setValue,
     formState: { errors },
   } = useForm()
+  const { isLoading, createProfile } = useAuth()
   const router = useRouter()
-  const { isAuth, isLoading, register: registerUser } = useAuth()
 
   useEffect(() => {
-    if (!isLoading && isAuth) {
-      router.replace('/explore')
+    if (defaultValues) {
+      setValue('firstName', defaultValues.firstName)
+      setValue('lastName', defaultValues.lastName)
+      if (defaultValues?.socials) {
+        setValue('socials.instagram', defaultValues.socials?.instagram || '')
+        setValue('socials.twitter', defaultValues.socials?.twitter || '')
+      }
+      setValue('profileImage', defaultValues?.profileImage || '')
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuth, isLoading])
+  }, [defaultValues, setValue])
 
   const onFormSubmit = handleSubmit(async (data) => {
-    await login(data)
+    createProfile(router.query.username, data)
   })
 
   return (
     <Layout meta={{ name: 'Create Profile' }}>
       <div className="flex h-full w-full flex-col items-center justify-center">
-        <form className="w-lg max-w-xl rounded-xl border bg-white p-12 text-base shadow-sm">
+        <div className="w-lg max-w-xl rounded-xl border bg-white p-12 text-base shadow-sm">
           <h1 className="mb-6 w-max text-clip text-2xl font-bold">Profile</h1>
+          <ImageUpload
+            defaultValue={defaultValues?.profileImage}
+            name={'profileImage'}
+            setValue={setValue}
+          />
           <div className="flex gap-3">
             <Input
               label={'First Name'}
@@ -83,7 +94,7 @@ const Profile = () => {
           >
             Create profile
           </Button>
-        </form>
+        </div>
       </div>
     </Layout>
   )

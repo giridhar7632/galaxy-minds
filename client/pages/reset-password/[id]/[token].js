@@ -44,11 +44,11 @@ const ResetPassword = () => {
           <Button
             className={'mt-4 w-full'}
             loading={isLoading}
-            loadingText={'Updating Password...'}
+            loadingText={'Updating password...'}
             onClick={onFormSubmit}
             disabled={!router.isReady}
           >
-            Update Password
+            Update password
           </Button>
         </form>
         <div className="mt-6">

@@ -44,38 +44,51 @@ const ImageUpload = ({ defaultValue, setValue, name = 'image' }) => {
   }
 
   return (
-    <form onSubmit={handleUpload}>
+    <form onSubmit={handleUpload} className="mb-4">
       <input
         name="file"
         type="file"
         onChange={handleOnChange}
-        className="mb-3 w-full rounded-md border p-3 focus:border-sky-300 focus:ring-sky-300"
+        id="files"
+        className="mb-3 hidden w-full rounded-xl border bg-gray-100 p-4 focus:border-blue-300 focus:ring-blue-300"
       />
-      <div>
+      <label htmlFor="files" className="cursor-pointer">
+        <Image
+          width={name === 'profileImage' ? 426 : 100}
+          height={name === 'profileImage' ? 426 : 100}
+          className={clsx(
+            'mx-auto mb-2 h-36 w-36 rounded-full object-cover object-center',
+            name === 'profileImage' ? 'aspect-square' : 'aspect-video'
+          )}
+          src={imageSrc ? imageSrc : 'https://api.multiavatar.com/temp.png'}
+          alt=""
+        />
+      </label>
+      {/* <div>
         {imageSrc && (
           <Image
-            width={426}
-            height={name === 'profileImage' ? 426 : 240}
+            width={name === 'profileImage' ? 426 : 100}
+            height={name === 'profileImage' ? 426 : 100}
             className={clsx(
-              'mb-2 w-full rounded',
+              'mx-auto mb-2 h-36 w-36 rounded-full object-cover object-center',
               name === 'profileImage' ? 'aspect-square' : 'aspect-video'
             )}
             src={imageSrc}
             alt=""
           />
-        )}
-        {imageSrc && !uploadData && (
-          <Button
-            type="submit"
-            variant="secondary"
-            className="w-full"
-            loading={loading}
-            loadingText="Uploading..."
-          >
-            Upload
-          </Button>
-        )}
-      </div>
+        )} */}
+      {imageSrc && !uploadData && (
+        <Button
+          type="submit"
+          variant="secondary"
+          className="w-full"
+          loading={loading}
+          loadingText="Uploading..."
+        >
+          Upload
+        </Button>
+      )}
+      {/* </div> */}
     </form>
   )
 }
