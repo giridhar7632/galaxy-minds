@@ -15,7 +15,7 @@ const transporter = createTransport({
 })
 
 const passwordResetTemplate = (user, url) => {
-  const { name, email } = user
+  const { username, email } = user
   return {
     from: `Galaxy Minds <noreply@talla_11915139@nitkkr.ac.in>`,
     to: email,
@@ -23,7 +23,7 @@ const passwordResetTemplate = (user, url) => {
     html: emailTemplate({
       title: 'Password Reset Link',
       subject: 'Galaxy Minds - Password Reset Link',
-      body: `Hey ${name}!
+      body: `Hey ${username}!
 			Reset your password by clicking on the button below.`,
       link: url,
       btn: 'Reset Password',
@@ -35,15 +35,15 @@ const passwordResetTemplate = (user, url) => {
 }
 
 const emailVerificationTemplate = (user, url) => {
-  const { name, email } = user
+  const { username, email } = user
   return {
     from: `Galaxy Minds <noreply@talla_11915139@nitkkr.ac.in>`,
     to: email,
-    subject: `Verify your email! ${name}`,
+    subject: `Verify your email! ${username}`,
     html: emailTemplate({
       title: 'Email Verification Link',
       subject: 'Galaxy Minds - Email Verification Link',
-      body: `Hey ${name}!
+      body: `Hey ${username}!
 			Verify your email by clicking the button below.`,
       link: url,
       btn: 'Verify',
@@ -54,7 +54,7 @@ const emailVerificationTemplate = (user, url) => {
 }
 
 const passwordResetConfirmationTemplate = (user) => {
-  const { name, email } = user
+  const { username, email } = user
 
   return {
     from: `Galaxy Minds <noreply@talla_11915139@nitkkr.ac.in>`,
@@ -63,7 +63,7 @@ const passwordResetConfirmationTemplate = (user) => {
     html: emailTemplate({
       title: 'Password Reset Successful',
       subject: 'Galaxy Minds - Password Reset Successful',
-      body: `Hey ${name}!
+      body: `Hey ${username}!
 			You have successfully completed resetting your password.`,
       footer: `If you haven't changed your password, please reset it by clicking forgot password!
 		`,
@@ -72,7 +72,7 @@ const passwordResetConfirmationTemplate = (user) => {
 }
 
 const emailVerifyConfirmationTemplate = (user) => {
-  const { name, email } = user
+  const { username, email } = user
 
   return {
     from: `Galaxy Minds <noreply@talla_11915139@nitkkr.ac.in>`,
@@ -81,7 +81,7 @@ const emailVerifyConfirmationTemplate = (user) => {
     html: emailTemplate({
       title: 'Email Verification Successful',
       subject: 'Galaxy Minds - Email Verification Successful',
-      body: `Hey ${name}!
+      body: `Hey ${username}!
 			Your email address has been successfully verified. Thank you for signing up for Galaxy Minds. We look forward to helping you study and collaborate easily.`,
       footer: `If you are not expecting this email, please ignore!
 		`,

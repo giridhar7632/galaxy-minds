@@ -1,100 +1,18 @@
-import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-
-import Button from '@/components/common/Button'
-import Input from '@/components/common/Input'
 import { useAuth } from '@/hooks/useAuth'
 import Layout from '@/components/layout'
-import ImageUpload from '@/components/ImageUpload'
 import { useRouter } from 'next/router'
+import { ProfileForm } from '@/components/Profile/ProfileForm'
 
-const Profile = ({ defaultValues }) => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    formState: { errors },
-  } = useForm()
-  const { isLoading, createProfile } = useAuth()
+const Profile = () => {
+  const { createProfile } = useAuth()
   const router = useRouter()
-
-  useEffect(() => {
-    if (defaultValues) {
-      setValue('firstName', defaultValues.firstName)
-      setValue('lastName', defaultValues.lastName)
-      if (defaultValues?.socials) {
-        setValue('socials.instagram', defaultValues.socials?.instagram || '')
-        setValue('socials.twitter', defaultValues.socials?.twitter || '')
-      }
-      setValue('profileImage', defaultValues?.profileImage || '')
-    }
-  }, [defaultValues, setValue])
-
-  const onFormSubmit = handleSubmit(async (data) => {
-    createProfile(router.query.username, data)
-  })
 
   return (
     <Layout meta={{ name: 'Create Profile' }}>
       <div className="flex h-full w-full flex-col items-center justify-center">
-        <div className="w-lg max-w-xl rounded-xl border bg-white p-12 text-base shadow-sm">
+        <ProfileForm username={router.query.username} type="Create" onFormSubmit={createProfile}>
           <h1 className="mb-6 w-max text-clip text-2xl font-bold">Profile</h1>
-          <ImageUpload
-            defaultValue={defaultValues?.profileImage}
-            name={'profileImage'}
-            setValue={setValue}
-          />
-          <div className="flex gap-3">
-            <Input
-              label={'First Name'}
-              name={'firstName'}
-              type="text"
-              required
-              placeholder="First Name"
-              aria-label="user-name"
-              autoComplete="current-name"
-              register={register('firstName', {
-                required: `Required!`,
-              })}
-              error={errors?.firstName}
-            />
-            <Input
-              label={'Last Name'}
-              name={'lastName'}
-              type="text"
-              required
-              placeholder="Last Name"
-              aria-label="user-name"
-              autoComplete="current-name"
-              register={register('lastName', {
-                required: `Required!`,
-              })}
-              error={errors?.lastName}
-            />
-          </div>
-          <p className="mb-2 text-xs text-gray-600">Social media (optional)</p>
-          <Input
-            name="instagram"
-            type="link"
-            placeholder="Instagram"
-            register={register('socials.instagram')}
-          />
-          <Input
-            name="twitter"
-            type="link"
-            placeholder="Twitter"
-            register={register('socials.twitter')}
-          />
-
-          <Button
-            className={'mt-2 w-full'}
-            loading={isLoading}
-            loadingText={'Creating profile...'}
-            onClick={onFormSubmit}
-          >
-            Create profile
-          </Button>
-        </div>
+        </ProfileForm>
       </div>
     </Layout>
   )

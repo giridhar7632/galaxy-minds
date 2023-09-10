@@ -1,6 +1,7 @@
 import Protected from '@/components/Protected'
 import { AuthProvider } from '@/hooks/useAuth'
 import { ToastProvider } from '@/hooks/useToast'
+import { AnimatePresence } from 'framer-motion'
 import '@/styles/globals.css'
 
 export default function MyApp({ Component, pageProps }) {
@@ -12,7 +13,9 @@ export default function MyApp({ Component, pageProps }) {
     <ToastProvider>
       <AuthProvider>
         <Protected protectedRoutes={protectedRoutes}>
-          {getLayout(<Component {...pageProps} />)}
+          <AnimatePresence mode="wait" initial={false}>
+            {getLayout(<Component {...pageProps} />)}
+          </AnimatePresence>
         </Protected>
       </AuthProvider>
     </ToastProvider>
