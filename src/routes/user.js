@@ -19,15 +19,7 @@ router.get('/', async (req, res) => {
 // Define route for getting user's own profile information
 router.get('/me', isAuth, async (req, res) => {
   try {
-    const user = await User.findById(req.user._id)
-
-    // If user is not found, return 404 error
-    if (!user) {
-      return res.status(404).json({
-        message: "User doesn't exist! 😕",
-        type: 'error',
-      })
-    }
+    const user = req.user
 
     // If user is found, return user object
     res.status(200).json(user)
@@ -74,9 +66,9 @@ router.put('/me', isAuth, async (req, res) => {
 })
 
 // Get user profile details
-router.get('/:id', isAuth, async (req, res) => {
+router.get('/:username', isAuth, async (req, res) => {
   try {
-    const user = await User.findById(req.params.id)
+    const user = await User.findOne({ username: req.params.username })
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' })
@@ -85,7 +77,10 @@ router.get('/:id', isAuth, async (req, res) => {
     res.json(user)
   } catch (error) {
     console.error(error)
-    res.status(500).json({ message: 'Server Error' })
+    res.status(500).json({
+      message: 'Internal server error! 😢',
+      type: 'error',
+    })
   }
 })
 

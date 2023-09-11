@@ -2,9 +2,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useAuth } from '../../hooks/useAuth'
 import { AnimatedNavLink } from '../common/Link'
+import ProfileMenu from '../Profile/ProfileMenu'
 
 const Navbar = () => {
-  const { isAuth } = useAuth()
+  const { isAuth, logout, user } = useAuth()
 
   // useEffect(() => {
   //   const handleLogout = () => {
@@ -34,6 +35,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <AnimatedNavLink href={'/about'}>About</AnimatedNavLink>
             <AnimatedNavLink href={'/explore'}>Explore</AnimatedNavLink>
+            <ProfileMenu logout={logout} {...user} />
           </div>
         )}
       </div>

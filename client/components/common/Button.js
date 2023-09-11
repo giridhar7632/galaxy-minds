@@ -25,7 +25,7 @@ export default function Button({
       {...attributes}
       className={clsx(
         variantClassname,
-        'flex cursor-pointer items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-semibold leading-snug ring-blue-200 transition duration-150 ease-in-out hover:ring focus:ring',
+        'h-lg flex cursor-pointer items-center justify-center gap-2 rounded-xl px-4 py-3 font-semibold leading-snug ring-blue-200 transition duration-150 ease-in-out hover:ring focus:ring',
         className
       )}
       disabled={attributes.disabled || loading}

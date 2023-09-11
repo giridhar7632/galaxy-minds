@@ -67,7 +67,21 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await fetcher('/api/auth/register', { body })
       toast.open(res)
-      router.push('/login')
+      router.push(`/profile/new/${res.username}`)
+    } catch (error) {
+      error?.message
+        ? toast.open({ message: error.message, type: 'error' })
+        : toast.open({ message: 'Something went wrong! 😕', type: 'error' })
+    }
+    setIsLoading(false)
+  }
+
+  async function createProfile(username, body) {
+    setIsLoading(true)
+    try {
+      const res = await fetcher(`/api/auth/profile/new/${username}`, { body })
+      toast.open(res)
+      router.replace('/login')
     } catch (error) {
       error?.message
         ? toast.open({ message: error.message, type: 'error' })
@@ -159,6 +173,7 @@ export const AuthProvider = ({ children }) => {
         register,
         login,
         logout,
+        createProfile,
         verifyEmail,
         resetPassword,
         sendPasswordResetEmail,

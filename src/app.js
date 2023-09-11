@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 // Routes
 const authRouter = require('./routes/auth')
 const mainRouter = require('./routes/index')
+const userRouter = require('./routes/user')
 
 const { MONGO_URI } = require('./utils/config')
 const logger = require('./utils/logger')
@@ -46,6 +47,7 @@ app.use(requestLogger)
 
 app.use('/api', mainRouter)
 app.use('/api/auth', authRouter)
+app.use('/api/users', userRouter)
 
 // connecting to mongodb atlas
 connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })

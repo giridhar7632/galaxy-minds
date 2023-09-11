@@ -4,13 +4,13 @@ import { ChevronRight } from './icons'
 
 export default function FormSection({ title, className, children, ...props }) {
   return (
-    <Disclosure className={'mb-2'} as="div" {...props}>
+    <Disclosure className={'mb-3'} as="div" {...props}>
       {({ open }) => (
         <>
           <Disclosure.Button
             as="div"
             className={clsx(
-              'flex cursor-pointer items-center justify-between rounded-md border p-3 font-medium',
+              'flex cursor-pointer items-center justify-between rounded-xl border p-5 font-medium',
               !open && 'shadow-sm hover:shadow-md',
               className
             )}
@@ -22,7 +22,10 @@ export default function FormSection({ title, className, children, ...props }) {
               className={clsx('text-blue-500', open && 'rotate-90 transform duration-100')}
             />
           </Disclosure.Button>
-          <Disclosure.Panel as="div" className="rounded border-gray-400 p-3 shadow-sm">
+          <Disclosure.Panel
+            as="div"
+            className="-my-1 rounded-b-xl border border-t-0 border-gray-100 p-3 shadow-sm"
+          >
             {children}
           </Disclosure.Panel>
         </>

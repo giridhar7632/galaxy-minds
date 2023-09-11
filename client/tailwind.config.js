@@ -20,6 +20,15 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
+      height: {
+        lg: '52px',
+      },
+      width: {
+        lg: '470px',
+      },
+      borderRadius: {
+        xl: '14px',
+      },
     },
   },
   plugins: [require('@tailwindcss/typography')],

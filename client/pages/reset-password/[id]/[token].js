@@ -34,7 +34,7 @@ const ResetPassword = () => {
             label={'Password'}
             type="password"
             name="password"
-            placeholder={`Your Super secret ✨`}
+            placeholder={`Password`}
             aria-label="user-password"
             register={register('newPassword', {
               required: `Password is required!`,
@@ -44,11 +44,11 @@ const ResetPassword = () => {
           <Button
             className={'mt-4 w-full'}
             loading={isLoading}
-            loadingText={'Updating Password...'}
+            loadingText={'Updating password...'}
             onClick={onFormSubmit}
             disabled={!router.isReady}
           >
-            Update Password
+            Update password
           </Button>
         </form>
         <div className="mt-6">

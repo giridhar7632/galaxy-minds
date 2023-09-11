@@ -33,7 +33,7 @@ const PasswordReset = () => {
   return (
     <Layout meta={{ name: 'Password Reset' }}>
       <div className="flex h-full w-full flex-col items-center justify-center">
-        <form className="w-96 max-w-xl rounded-xl border bg-white p-12 text-base shadow-sm">
+        <form className="w-lg max-w-xl rounded-xl border bg-white p-12 text-base shadow-sm">
           <h1 className="mb-6 w-max text-clip text-2xl font-bold">Password Reset</h1>
           {/* {status ? (
             <div className="mb-2 rounded-sm bg-red-50 p-2 text-center ring-2 ring-red-200">
@@ -45,7 +45,7 @@ const PasswordReset = () => {
             name={'email'}
             type="email"
             required
-            placeholder="your@email.com"
+            placeholder="Email"
             aria-label="user-email"
             autoComplete="current-email"
             register={register('email', {
@@ -61,10 +61,10 @@ const PasswordReset = () => {
           <Button
             className={'mt-4 w-full'}
             loading={isLoading}
-            loadingText={'Sending Password Reset Email...'}
+            loadingText={'Sending password reset email...'}
             onClick={onFormSubmit}
           >
-            Send Password Reset Email
+            Send password reset email
           </Button>
         </form>
         <div className="mt-6">

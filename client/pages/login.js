@@ -9,7 +9,7 @@ import { useAuth } from '@/hooks/useAuth'
 import Layout from '@/components/layout'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
+  const [userId, setEmail] = useState('')
   const {
     register,
     handleSubmit,
@@ -27,7 +27,7 @@ const Login = () => {
 
   useEffect(() => {
     const subscription = watch(
-      (value, { name, _type }) => name === 'email' && setEmail(value.email)
+      (value, { name, _type }) => name === 'userId' && setEmail(value.userId)
     )
     return () => subscription.unsubscribe()
   }, [watch])
@@ -38,16 +38,16 @@ const Login = () => {
   return (
     <Layout meta={{ name: 'Login' }}>
       <div className="flex h-full w-full flex-col items-center justify-center">
-        <form className="w-96 max-w-xl rounded-xl border bg-white p-12 text-base shadow-sm">
+        <form className="w-lg max-w-xl rounded-xl border bg-white p-12 text-base shadow-sm">
           <h1 className="mb-6 w-max text-clip text-2xl font-bold">Login</h1>
           <Input
             label={'Username or Email'}
             name={'userId'}
             type="text"
             required
-            placeholder="your username or your@email.com"
-            aria-label="user-email"
-            autoComplete="current-email"
+            placeholder="Username or Email"
+            aria-label="user-id"
+            autoComplete="current-id"
             register={register('userId', {
               required: `You should provide either username or email!`,
               // pattern: {
@@ -62,7 +62,8 @@ const Login = () => {
             label={'Password'}
             type="password"
             name="password"
-            placeholder={`Your Super secret ✨`}
+            divClass={'mb-0'}
+            placeholder={`Password`}
             aria-label="user-password"
             register={register('password', {
               required: `Password is required!`,
@@ -70,13 +71,13 @@ const Login = () => {
             error={errors?.password}
           />
           <Link
-            className="block w-full text-right text-xs"
-            href={`/password-reset${email ? `?email=${email}` : ''}`}
+            className="mb-3 block w-full text-right text-xs"
+            href={`/password-reset${userId ? `?email=${userId}` : ''}`}
           >
             Forgot Password?
           </Link>
           <Button
-            className={'mt-2'}
+            className={'mt-2 w-full'}
             loading={isLoading}
             loadingText={'Logging in...'}
             onClick={onFormSubmit}

@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import { useAuth } from '@/hooks/useAuth'
-import Loader from './common/Loader'
+import PageLoader from './common/PageLoader'
 import Meta from './layout/Meta'
 import { titleCase } from '@/utils/titleCase'
 
@@ -25,7 +25,7 @@ const Protected = ({ protectedRoutes, children }) => {
     return (
       <>
         <Meta meta={{ name }} />
-        <Loader />
+        <PageLoader />
       </>
     )
   }

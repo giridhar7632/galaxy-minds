@@ -8,8 +8,8 @@ import Link from '@/components/common/Link'
 import { useAuth } from '@/hooks/useAuth'
 import Layout from '@/components/layout'
 
-const Register = () => {
-  const [email, setEmail] = useState('')
+const Contact = () => {
+  const [userId, setEmail] = useState('')
   const {
     register,
     handleSubmit,
@@ -17,7 +17,7 @@ const Register = () => {
     formState: { errors },
   } = useForm()
   const router = useRouter()
-  const { isAuth, isLoading, register: registerUser } = useAuth()
+  const { isAuth, isLoading, login } = useAuth()
   useEffect(() => {
     if (!isLoading && isAuth) {
       router.replace('/explore')
@@ -27,33 +27,19 @@ const Register = () => {
 
   useEffect(() => {
     const subscription = watch(
-      (value, { name, _type }) => name === 'email' && setEmail(value.email)
+      (value, { name, _type }) => name === 'userId' && setEmail(value.userId)
     )
     return () => subscription.unsubscribe()
   }, [watch])
-
   const onFormSubmit = handleSubmit(async (data) => {
-    await registerUser(data)
+    await login(data)
   })
 
   return (
-    <Layout meta={{ name: 'Register' }}>
+    <Layout meta={{ name: 'Contact' }}>
       <div className="flex h-full w-full flex-col items-center justify-center">
         <form className="w-lg max-w-xl rounded-xl border bg-white p-12 text-base shadow-sm">
-          <h1 className="mb-6 w-max text-clip text-2xl font-bold">Register</h1>
-          <Input
-            label={'Username'}
-            name={'username'}
-            type="text"
-            required
-            placeholder="Username"
-            aria-label="user-username"
-            autoComplete="current-username"
-            register={register('username', {
-              required: `You should provide Username!`,
-            })}
-            error={errors?.username}
-          />
+          <h1 className="mb-6 w-max text-clip text-2xl font-bold">Contact</h1>
           <Input
             label={'Email'}
             name={'email'}
@@ -73,31 +59,42 @@ const Register = () => {
             error={errors?.email}
           />
           <Input
-            label={'Password'}
-            type="password"
-            name="password"
-            placeholder={`Password`}
-            aria-label="user-password"
-            register={register('password', {
-              required: `Password is required!`,
-            })}
-            error={errors?.password}
+            label={'Subject'}
+            name={'subject'}
+            type="text"
+            required
+            placeholder="Subject"
+            aria-label="user-problem"
+            register={register('subject')}
+            error={errors?.subject}
           />
+          <Input
+            label={'Message'}
+            name={'message'}
+            type="textarea"
+            className={'min-h-48'}
+            required
+            placeholder="Message"
+            aria-label="user-message"
+            register={register('message')}
+            error={errors?.message}
+          />
+
           <Button
             className={'mt-2 w-full'}
             loading={isLoading}
-            loadingText={'Creating account...'}
+            loadingText={'Sending message...'}
             onClick={onFormSubmit}
           >
-            Create account
+            Send Message
           </Button>
         </form>
         <div className="mt-6">
-          {'Already have an account?'} <Link href={'login'}>Login now</Link>
+          {"Don't have an account?"} <Link href={'register'}>Register now</Link>
         </div>
       </div>
     </Layout>
   )
 }
 
-export default Register
+export default Contact

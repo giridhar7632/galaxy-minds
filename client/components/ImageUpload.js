@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import Button from './common/Button'
 import Image from 'next/image'
 import clsx from 'clsx'
+import { Pencil } from './icons'
 
-const ImageUpload = ({ defaultValue, setValue, name = 'image' }) => {
+const ImageUpload = ({ defaultValue, setValue, alt, name = 'image' }) => {
   const [imageSrc, setImageSrc] = useState(defaultValue)
   const [loading, setLoading] = useState(false)
   const [uploadData, setUploadData] = useState()
@@ -44,38 +45,55 @@ const ImageUpload = ({ defaultValue, setValue, name = 'image' }) => {
   }
 
   return (
-    <form onSubmit={handleUpload}>
+    <form onSubmit={handleUpload} className="mx-auto mb-4 max-w-fit">
       <input
         name="file"
         type="file"
         onChange={handleOnChange}
-        className="mb-3 w-full rounded-md border p-3 focus:border-sky-300 focus:ring-sky-300"
+        id="files"
+        className="mb-3 hidden rounded-xl border bg-gray-100 p-4 focus:border-blue-300 focus:ring-blue-300"
       />
-      <div>
+      <label htmlFor="files" className="relative mb-2 block cursor-pointer">
+        <Image
+          width={name === 'profileImage' ? 426 : 100}
+          height={name === 'profileImage' ? 426 : 100}
+          className={clsx(
+            'h-36 w-36 rounded-full object-cover object-center',
+            name === 'profileImage' ? 'aspect-square' : 'aspect-video'
+          )}
+          src={imageSrc ? imageSrc : `https://api.multiavatar.com/${alt}.png`}
+          alt={alt}
+        />
+
+        <div class="absolute bottom-2 right-2 inline-flex h-6 w-6 items-center justify-center rounded-full border-2 border-white bg-blue-500 p-1 text-xs font-bold text-white dark:border-gray-900">
+          <Pencil />
+        </div>
+      </label>
+      {/* <div>
         {imageSrc && (
           <Image
-            width={426}
-            height={name === 'profileImage' ? 426 : 240}
+            width={name === 'profileImage' ? 426 : 100}
+            height={name === 'profileImage' ? 426 : 100}
             className={clsx(
-              'mb-2 w-full rounded',
+              'mx-auto mb-2 h-36 w-36 rounded-full object-cover object-center',
               name === 'profileImage' ? 'aspect-square' : 'aspect-video'
             )}
             src={imageSrc}
             alt=""
           />
-        )}
-        {imageSrc && !uploadData && (
-          <Button
-            type="submit"
-            variant="secondary"
-            className="w-full"
-            loading={loading}
-            loadingText="Uploading..."
-          >
-            Upload
-          </Button>
-        )}
-      </div>
+        )} */}
+      {imageSrc && !uploadData && (
+        <Button
+          type="submit"
+          variant="secondary"
+          className="w-full"
+          loading={loading}
+          loadingText="Uploading..."
+        >
+          Upload
+        </Button>
+      )}
+      {/* </div> */}
     </form>
   )
 }
